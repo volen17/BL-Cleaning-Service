@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+
+@import '~@angular/material/theming';
+
+@import "src/styles";
+
+@include mat.core();
+
+.form-field {
+  width: 500px;
+}
+
+.cart-grid {
+  display: grid;
+  justify-items: center;
+}
+
+.submit-form-container{
+  display: grid;
+  justify-items: center;
+  //padding: 50px;
+}
+
+.submit-button{
+  width: 250px;
+  height: 50px;
+  font-size: large;
+}
+
+button.mat-raised-button {
+  background-color: map-get($custom-colors-logo, custom-pink);
+  color: white;
+  font-weight: lighter;
+  border-radius: 30px;
+}
+
+button.mat-raised-button:hover:enabled {
+  background-color: map-get($custom-colors-logo, custom-brown);
+}
+
+.cart-container {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
+.form-container {
+  text-align: center;
+  border-radius: 10px;
+  width: 700px;
+  height: 700px;
+  padding: 15px;
+  margin: 20px;
+  background-color: #F8F9FA;
+  padding-top: 50px;
+}
+
+.mat-card-landscape {
+  //max-width: px;
+  max-height: 500px;
+  height: auto;
+  width: auto;
+}
+
+.datetime-field {
+  display: flex;
+  //grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  //margin-left: 50px;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  //width: 500px;
+  justify-self: center;
+  align-self: center;
+}
+
+.date-field {
+  padding-left: 20px;
+  padding-right: 30px;
+  width: 380px;
+}
+
+.time-field {
+  padding-left: 20px;
+}

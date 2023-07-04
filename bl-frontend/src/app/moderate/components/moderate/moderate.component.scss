@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+@import '~@angular/material/theming';
+
+@import "src/styles";
+
+@include mat.core();
+
+.form-container {
+  padding-top: 50px;
+  display: grid;
+  justify-items: center;
+}
+
+button.mat-raised-button {
+  background-color: map-get($custom-colors-logo, custom-blue);
+  color: white;
+  font-size: x-large;
+  font-weight: lighter;
+  border-radius: 30px;
+  width: 500px;
+  padding: 20px;
+  margin: 20px;
+}
+
+button.mat-raised-button:hover {
+  background-color: map-get($custom-colors-logo, custom-pink);
+}

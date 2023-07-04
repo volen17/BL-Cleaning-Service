@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+//@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+//@import '../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
+
+@include mat.core();
+
+$bl-front-end-primary: mat.define-palette(mat.$indigo-palette);
+$bl-front-end-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$bl-front-end-warn: mat.define-palette(mat.$red-palette);
+
+$bl-front-end-theme: mat.define-light-theme((
+  color: (
+    primary: $bl-front-end-primary,
+    accent: $bl-front-end-accent,
+    warn: $bl-front-end-warn,
+  )
+));
+
+$custom-colors-pics: (
+  custom-brown: rgb(149,81,60),
+  custom-light-pink: rgb(220,170,179),
+  custom-dark-pink: rgb(176,114,127),
+  custom-blue: rgb(194,226,249),
+);
+
+$custom-colors-logo: (
+  custom-pink: rgb(241, 133, 131),
+  custom-blue: rgb(129, 169, 195),
+  custom-grey: rgb(210, 210, 210),
+  custom-brown: rgb(85, 27, 13),
+  custom-background: rgb(210, 210, 210),
+);
+
+@include mat.all-component-themes($bl-front-end-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

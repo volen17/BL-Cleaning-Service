@@ -1,0 +1,56 @@
+<mat-toolbar>
+  <a *ngIf="this.router.url!=='/'" class="image-homepage-ref" [routerLink]="!this.localStorageService.email ? '' : '/catalogue'">
+    <img src="assets/granny-logo.png"/>
+    <h1>Baba Luga</h1>
+  </a>
+  <span class="flex-expand"></span>
+  <a *ngIf="this.localStorageService.email" class="login-ref" href="" (click)="logOut()">Log out</a>
+  <a *ngIf="!this.localStorageService.email" class="login-ref" href="login">Log in</a>
+  <div *ngIf="!this.localStorageService.email; else signedIn">
+    <button class="sign-up-button" mat-raised-button (click)="navigate('/registration')">
+      Sign up
+    </button>
+  </div>
+  <ng-template #signedIn>
+    <div *ngIf="this.localStorageService.role!=='admin'; else adminIn">
+      <button class="feedback-button" mat-raised-button (click)="navigate('/feedback')">
+        Feedback
+      </button>
+    </div>
+    <ng-template #adminIn>
+      <button class="feedback-button" mat-raised-button (click)="navigate('/orders')">
+        Orders
+      </button>
+    </ng-template>
+  </ng-template>
+  <div *ngIf="this.localStorageService.email">
+  <div *ngIf="this.localStorageService.role!=='admin'; else adminIn">
+    <div *ngIf="localStorageService.role==='Client'; else workerIn">
+  <button *ngIf="this.localStorageService.email" mat-stroked-button (click)="navigate('/cart')">
+    <mat-icon>
+      shopping_cart
+    </mat-icon>
+    Shopping Cart ({{this.localStorageService.cart?.gears.length + this.localStorageService.cart?.services.length}})
+  </button>
+    </div>
+    <ng-template #workerIn>
+      <button mat-stroked-button (click)="navigate('/orders')">
+        <mat-icon>
+          list_alt
+        </mat-icon>
+        Orders
+      </button>
+    </ng-template>
+  </div>
+  <ng-template #adminIn>
+    <button mat-stroked-button (click)="navigate('/moderate')">
+      <mat-icon>
+        settings
+      </mat-icon>
+      Moderate
+    </button>
+  </ng-template>
+  </div>
+</mat-toolbar>
+
+

@@ -1,0 +1,63 @@
+<div class="cart-container" *ngIf="!this.orderCreated else orderIsCreated">
+  <div class="form-container" *ngIf="this.localStorage.cart && this.localStorage.cart.gears.length + this.localStorage.cart.services.length !== 0 else elseBlock">
+    <h1>Shopping Cart:</h1>
+    <div class="cart-grid">
+      <strong style="font-size: larger">Added items:</strong><br>
+      <div *ngFor="let service of this.localStorage.cart.services">
+        <strong>Services:</strong><br>
+        &nbsp;-&nbsp;{{service.name}}&nbsp;-&nbsp;{{service.price}}BGN
+      </div><br>
+      <div *ngFor="let equipment of this.localStorage.cart.gears">
+        <strong>Equipment:</strong><br>
+        &nbsp;-&nbsp;{{equipment.name}}&nbsp;-&nbsp;{{equipment.price}}BGN
+      </div><br>
+    </div>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Select Payment Method</mat-label>
+      <mat-select [(value)]="paymentMethod">
+        <mat-option value="Cash">Cash</mat-option>
+        <mat-option value="Card">Card</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input [(ngModel)]="orderAddress" matInput placeholder="Enter delivery address" [formControl]="nameFormControl">
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Delivery address is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <input [(ngModel)]="phoneNumber" matInput placeholder="Enter phone number" [formControl]="nameFormControl">
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Phone number is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div class="datetime-field">
+      <mat-form-field class="date-field" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input [formControl]="orderDate" matInput [min]="minDate" [matDatepicker]="picker">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <ngx-mat-timepicker class="time-field" [ngModelOptions]="{standalone: true}"  [(ngModel)]="time"></ngx-mat-timepicker>
+    </div>
+    <div class="submit-form-container">
+      <button *ngIf="!loadingService.isLoading; else elseBlock" class ="submit-button" type="submit" mat-raised-button (click)="createOrder()">Order Now</button>
+      <ng-template #elseBlock>
+        <button class ="submit-button" disabled type="submit" mat-raised-button>Ordering...</button>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <img src="https://i.ibb.co/DMKRDPb/Pngtree-granny-standing-illustration-vector-on-5302353.png" class="mat-card-landscape equipment-img"><br>
+    <h1>Cart is empty</h1>
+  </ng-template>
+</div>
+<ng-template #orderIsCreated>
+  <div class="cart-container">
+  <img src="https://i.ibb.co/HY7WBvb/Pngtree-granny-with-to-do-list-5302359.png" class="mat-card-landscape equipment-img"><br>
+  <h1>Thank you! Your order is on its way!</h1>
+  </div>
+</ng-template>

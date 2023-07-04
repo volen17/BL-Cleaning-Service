@@ -1,0 +1,42 @@
+<div class="equipment-container">
+  <div class="form-container">
+    <h1>Save an equipment</h1>
+<mat-form-field class="form-field"  appearance="fill">
+  <mat-label>Enter Image URL</mat-label>
+  <input [(ngModel)]="imageUrl" class="url-input" (focus)="markTouched()" matInput placeholder="https://..." name="imageUrl" [formControl]="url" required>
+  <mat-error *ngIf="url.hasError('required')">
+    URL is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="url.hasError('pattern')">
+    Please enter a valid URL
+  </mat-error>
+</mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input [(ngModel)]="equipmentName" matInput placeholder="Enter equipment title" [formControl]="nameFormControl">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Price in BGN</mat-label>
+        <input [(ngModel)]="equipmentPrice" type="number" min="0.01" matInput placeholder="Enter equipment price" [formControl]="priceFormControl">
+        <mat-error *ngIf="priceFormControl.hasError('required')">
+           BGN Price is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="priceFormControl.hasError('pattern')">
+          Please enter a valid price in BGN
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea [(ngModel)]="equipmentDescription" matInput></textarea>
+      </mat-form-field>
+    <div class="submit-form-container">
+      <button *ngIf="!loadingService.isLoading; else elseBlock" [disabled]="url.invalid || priceFormControl.invalid || nameFormControl.invalid" class ="submit-button" color="primary" type="submit" mat-raised-button (click)="addEquipment()">Save</button>
+      <ng-template #elseBlock>
+        <button class ="submit-button" disabled color="primary" type="submit" mat-raised-button>Saving...</button>
+      </ng-template>
+    </div>
+  </div>
+</div>

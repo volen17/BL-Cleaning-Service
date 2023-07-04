@@ -1,0 +1,15 @@
+<div class="feedback-container">
+  <div class="form-container">
+    <h1>Leave Feedback</h1>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea [(ngModel)]="feedbackDescription" matInput rows="15"></textarea>
+    </mat-form-field>
+    <div class="submit-form-container">
+      <button *ngIf="!loadingService.isLoading; else elseBlock" class ="submit-button" type="submit" mat-raised-button (click)="addFeedback()">Send Feedback</button>
+      <ng-template #elseBlock>
+        <button class ="submit-button" disabled type="submit" mat-raised-button>Saving...</button>
+      </ng-template>
+    </div>
+  </div>
+</div>

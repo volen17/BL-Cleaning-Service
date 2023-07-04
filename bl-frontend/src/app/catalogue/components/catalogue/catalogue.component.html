@@ -1,0 +1,37 @@
+<div class="catalogue-container">
+  <h1 *ngIf="loadingServicesService.isLoading || loadingEquipmentService.isLoading else elseBlock">Loading...</h1>
+  <ng-template #elseBlock>
+    <div class="catalogue-grid">
+      <mat-card *ngFor="let service of services" class="image-card" (mouseover)="toggleServiceHover(service.id)"
+                (mouseleave)="removeHover()">
+        <mat-card-content *ngIf="(this.hoveredCardId !== 'service-' + service.id) else elseBlock1">
+          <strong class="card-title">Service</strong><br><br>
+          <strong>{{service.name}}</strong><br>
+          <img src="{{service.imageUrl}}" class="mat-card-landscape equipment-img"><br>
+          <strong>{{service.price}} BGN</strong>
+        </mat-card-content>
+        <ng-template #elseBlock1>
+          <mat-card-content>
+            <p>{{service.description}}</p>
+            <button *ngIf="localStorage.role === 'Client'" (click)="this.localStorage.addServiceToCart(service)" mat-raised-button>Add to Cart</button>
+          </mat-card-content>
+        </ng-template>
+      </mat-card>
+      <mat-card *ngFor="let gear of equipment" class="image-card" (mouseover)="toggleEquipmentHover(gear.id)"
+                (mouseleave)="removeHover()">
+        <mat-card-content *ngIf="(this.hoveredCardId !== 'equipment-' + gear.id) else elseBlock2">
+          <strong class="card-title">Equipment</strong><br><br>
+          <strong>{{gear.name}}</strong><br>
+          <img src="{{gear.imageUrl}}" class="mat-card-landscape equipment-img"><br>
+          <strong>{{gear.price}} BGN</strong>
+        </mat-card-content>
+        <ng-template #elseBlock2>
+          <mat-card-content>
+            <p>{{gear.description}}</p>
+            <button *ngIf="localStorage.role === 'Client'" (click)="this.localStorage.addGearToCart(gear)" mat-raised-button>Add to Cart</button>
+          </mat-card-content>
+        </ng-template>
+      </mat-card>
+    </div>
+  </ng-template>
+</div>

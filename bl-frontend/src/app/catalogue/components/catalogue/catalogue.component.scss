@@ -1,0 +1,64 @@
+@use '@angular/material' as mat;
+
+@import '~@angular/material/theming';
+
+@import "src/styles";
+
+@include mat.core();
+
+.catalogue-container {
+  display: grid;
+  justify-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.catalogue-grid {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin:0;
+  padding: 0;
+}
+
+.image-card {
+  max-height: 400px;
+  max-width: 300px;
+  min-height: 400px;
+  min-width: 300px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.mat-card-portrait {
+  max-height: 250px;
+  max-width: 250px;
+}
+
+.mat-card-landscape {
+  max-width: 400px;
+  max-height: 250px;
+}
+
+mat-card-content {
+  display: grid;
+  justify-items: center;
+  position: relative;
+}
+
+.end-page{
+  padding-top: 50px;
+}
+
+button.mat-raised-button {
+  background-color: map-get($custom-colors-logo, custom-blue);
+  color: white;
+  font-weight: lighter;
+  border-radius: 30px;
+}
+
+button.mat-raised-button:hover:enabled {
+  background-color: map-get($custom-colors-logo, custom-pink);
+}

@@ -1,0 +1,22 @@
+<div class="view-orders-container">
+  <h1>Orders Today:</h1>
+  <h2  *ngIf="loadingService.isLoading; else elseBlock" class="loading-spinner">Loading...</h2>
+  <ng-template #elseBlock>
+    <mat-card *ngFor="let order of orders" class="order-card">
+      <mat-card-content>
+          <strong>Address:&nbsp;{{order.orderAddress}}</strong><br>
+          <strong>Phone:&nbsp;{{order.phoneNumber}}</strong><br><br>
+        <div *ngFor="let service of order.serviceList">
+          <strong>Services:</strong><br>
+          &nbsp;-&nbsp;{{service.name}}&nbsp;-&nbsp;{{service.price}}BGN
+        </div><br>
+        <div *ngFor="let equipment of order.equipmentList">
+          <strong>Equipment:</strong><br>
+          &nbsp;-&nbsp;{{equipment.name}}&nbsp;-&nbsp;{{equipment.price}}BGN
+        </div><br>
+        <strong>Payment:&nbsp;{{order.method}}</strong><br>
+        <strong>Final Price&nbsp;=&nbsp;{{order.price}}BGN</strong>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>

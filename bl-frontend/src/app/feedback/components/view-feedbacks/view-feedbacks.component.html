@@ -1,0 +1,21 @@
+<div class="view-feedback-container">
+  <h2  *ngIf="loadingService.isLoading; else elseBlock" class="loading-spinner">Loading...</h2>
+  <ng-template #elseBlock>
+    <mat-card *ngFor="let feedback of feedbackList" class="feedback-card">
+      <mat-card-content>
+        <div *ngIf="feedback.user; else unknown">
+          <strong>Name:&nbsp;</strong>
+        <strong>{{feedback.user.firstName}}&nbsp;</strong>
+        <strong>{{feedback.user.lastName}}</strong><br>
+          <strong>Role:&nbsp;</strong>
+          <strong>{{feedback.user.role}}</strong><br><br>
+        </div>
+        <ng-template #unknown>
+          <strong>Name: Unknown</strong><br><br>
+        </ng-template>
+        <strong>Description:</strong><br><br>
+        {{feedback.description}}
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>

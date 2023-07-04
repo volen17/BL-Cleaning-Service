@@ -1,0 +1,24 @@
+<div class="homepage-container">
+  <img class="image" src="assets/granny-logo-description.png">
+  <div class="contents">
+    <h1>Professional <br>
+      cleaning services <br>
+      like our grandmother taught us</h1>
+    <h2>Baba Luga is the fastest and easiest way to <br>
+      schedule your cleaning - we can provide you <br>
+      with the most precise and cheerful cleaning team <br>
+      or with the best and most powerful cleaning supplies.</h2>
+    <button
+      *ngIf="!loadingService.isLoading; else elseBlock"
+      (click)="navigate('/catalogue/')"
+      class="submit-button"
+      type="submit"
+      mat-raised-button
+    >Let's clean
+      <mat-icon class="arrow">arrow_forward</mat-icon>
+    </button>
+    <ng-template #elseBlock>
+      <button class="submit-button" disabled type="submit" mat-raised-button>Loading...</button>
+    </ng-template>
+  </div>
+</div>
